@@ -23,7 +23,6 @@ class StoreBookRequest extends FormRequest
      */
     public function rules()
     {
-        //dd($this);
         return [
             'name' => 'required|string|max:255|min:5',
             'description' => 'required|string|max:255|min:5',

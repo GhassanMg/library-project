@@ -51,7 +51,6 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        dd('ff');
         $book = Book::create([
             'name' => $request->name,
             'description' => $request->description,
