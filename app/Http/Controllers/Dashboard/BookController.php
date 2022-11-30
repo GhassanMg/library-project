@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Book\StoreBookRequest;
+use App\Http\Requests\Dashboard\Book\UpdateDashboardBookRequest;
 use App\Models\Book;
+use App\Models\Category;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
 
@@ -36,7 +39,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $Categories = Category::all();
+        return view('books.create',compact('Categories'));
     }
 
     /**
@@ -45,13 +49,18 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorebookRequest $request)
+    public function store(StoreBookRequest $request)
     {
+        dd('ff');
         $book = Book::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => ImageService::storeFiles($request->file('image'), 'books/Images'),
+            'category_id' => $request->category,
+            //'image' => ImageService::storeFiles($request->file('image'), 'books/Images'),
         ]);
+
+        $book->addMediaFromRequest('image')
+                ->toMediaCollection();
 
         return redirect()->route('books.index');
     }
@@ -85,7 +94,7 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDashboardbookRequest $request, Book $book)
+    public function update(UpdateDashboardBookRequest $request, Book $book)
     {
         $book->update([
             'name' => $request->name,
