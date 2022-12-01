@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add New book')
+@section('title', 'Add New Product')
 
 @push('css')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -60,7 +60,7 @@
             </div>
             @endif
 
-            <form action="{{ route('books.store') }}" method="POST" class="card" autocomplete="off" enctype="multipart/form-data">
+            <form action="{{ route('products.store') }}" method="POST" class="card" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
 
@@ -69,20 +69,6 @@
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{ 'Name' }}" value="{{ old('name') }}" required>
                     </div>
                     @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-
-                    <div class="mb-3">
-                        <label class="form-label required">Category</label>
-                        <select type="text" class="form-select" name="category" placeholder="Select a date" id="select-people" value="">
-                          @foreach ($Categories as $category)
-                                <option data-custom-properties="&lt;span class=&quot;avatar avatar-xs&quot; style=&quot;background-image: {{ $category->getFirstMedia() }}&quot;&gt;&lt;/span&gt;" value="{{ $category->id }}"
-                                    {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @error('Category')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 

@@ -18,8 +18,8 @@
                         <thead>
                             <tr>
                                 <th>{{ __('Name') }}</th>
-                                <th>{{ __('Email Address') }}</th>
                                 <th>{{ __('Phone') }}</th>
+                                <th>{{ __('Address') }}</th>
                                 <th>{{ __('Created at') }}</th>
                                 <th class="w-1"></th>
                             </tr>

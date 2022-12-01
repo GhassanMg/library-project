@@ -11,36 +11,35 @@
                         {{ config('app.name') }}
                     </div>
                     <h2 class="page-title">
-                        {{ __('My Books') }}
+                        {{ __('My Categories') }}
                     </h2>
-                    <h3><a href="{{ route('books.create') }}" class="text-primary ">Add more!</a></h3>
+                    <h3><a href="{{ route('categories.create') }}" class="text-primary ">Add more!</a></h3>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            @foreach ($books as $book)
+            @foreach ($categories as $category)
                 <div class="col-md-3">
                     <div class="card cardhov my-2">
 
-                        {{ $book->getFirstMedia() }}
+                        <img src="{{ $category->image }}" alt="" width="100%">
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ $book['name'] }}</h5>
-                            <a href="{{ route('books.show', $book) }}" class="text-primary"> show more
+                            <h5 class="card-title">{{ $category['name'] }}</h5>
+                            <a href="{{ route('categories.show', $category) }}" class="text-primary"> show more
                                 info
                             </a>
                             <div class="row my-2">
                                 <div class="col">
-                                    <a class="btn ma-2" href="{{ route('books.edit', $book->id) }}"
+                                    <a class="btn ma-2" href="{{ route('categories.edit', $category->id) }}"
                                         style="background-color: #161C34; color:white;">
                                         Edit
                                     </a>
                                 </div>
                                 <div class="col">
-
                                     <!-- Trigger the modal with a button -->
-                                    <form action="{{ route('books.destroy', $book) }}" method="POST">
+                                    <form action="{{ route('categories.destroy', $category) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button style="background-color: #F36B2A; color:white;" class="btn mb-2"
@@ -56,7 +55,7 @@
             @endforeach
         </div>
         <div class="row justify-content-center">
-            {{ $books->withQueryString() }}
+            {{ $categories->withQueryString() }}
         </div>
     </div>
 @endsection

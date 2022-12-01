@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Book;
+namespace App\Http\Requests\Dashboard\Category;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreBookRequest extends FormRequest
+class UpdateDashboardCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,7 @@ class StoreBookRequest extends FormRequest
         return [
             'name' => 'required|string|max:255|min:5',
             'description' => 'required|string|max:255|min:5',
-            'category' => 'required',
-            'image' => 'required|file|image',
+            'image' => 'nullable|image',
         ];
     }
 

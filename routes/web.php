@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\BookController;
-use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::get('profile', [UserController::class, 'show'])->name('profile.show');
 
         Route::resource('books', BookController::class);
+        Route::resource('categories', CategoryController::class);
         Route::resource('users', UserController::class);
 
     //});

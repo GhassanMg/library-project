@@ -55,7 +55,6 @@ class BookController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'category_id' => $request->category,
-            //'image' => ImageService::storeFiles($request->file('image'), 'books/Images'),
         ]);
 
         $book->addMediaFromRequest('image')

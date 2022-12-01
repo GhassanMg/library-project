@@ -17,9 +17,11 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'Science',
+            'description' => 'Science Description',
         ]);
         Category::create([
             'name' => 'Math',
+            'description' => 'Math Description',
         ]);
     }
 }
