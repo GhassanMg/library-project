@@ -34,7 +34,7 @@
                     {{ config('app.name') }}
                 </div>
                     <h2 class="page-title">
-                        {{ __('Add Book') }}
+                        {{ __('Add Category') }}
                     </h2>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             </div>
             @endif
 
-            <form action="{{ route('products.store') }}" method="POST" class="card" autocomplete="off" enctype="multipart/form-data">
+            <form action="{{ route('categories.store') }}" method="POST" class="card" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
 

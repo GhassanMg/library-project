@@ -23,15 +23,15 @@ class Book extends Model implements HasMedia
     ];
 
     //Attributes
-    public function getImageAttribute($key)
-    {
-        if (is_null($key)) {
-            return null;
-        }
+    // public function getImageAttribute($key)
+    // {
+    //     if (is_null($key)) {
+    //         return null;
+    //     }
 
-        return url('/').'/'.$key;
-        //return url('/').$key;
-    }
+    //     return url('/').'/'.$key;
+    //     //return url('/').$key;
+    // }
 
     //Relations
     public function category()

@@ -12,7 +12,9 @@
             </div>
             <div class="card mb-3">
 
-                {{ $category->GetFirstMedia() }}
+                <div class="col-md-3">
+                    {{ $category->GetFirstMedia() }}
+                </div>
 
                 <div class="card-body">
                     <h1 class="card-title text-primary"> Basic Info </h1>

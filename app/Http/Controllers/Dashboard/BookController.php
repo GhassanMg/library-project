@@ -99,12 +99,12 @@ class BookController extends Controller
             'description' => $request->description,
         ]);
 
-        if (isset($request->image)) {
-            $new_image = ImageService::storeFiles($request->file('image'), 'books/Images');
-            $book->update([
-                'image' => $new_image,
-            ]);
+        if ($request->hasFile('image')) {
+            $book->media()->delete();
+            $book->addMediaFromRequest('image')
+                ->toMediaCollection();
         }
+
         $books = Book::paginate(10);
 
         return redirect()->route('books.index');

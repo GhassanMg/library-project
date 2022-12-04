@@ -69,7 +69,16 @@
 
         <div class="mb-3">
             <div class="col-md-3">
-                <img src="{{ $category->image }}" alt="" width="100%">
+                {{ $category->GetFirstMedia() }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label required">{{ __('Image') }}</label>
+                <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                    id="image" accept="image/*" value="{{ old('image') }}" multiple>
+                @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 

@@ -76,8 +76,8 @@
                         <label class="form-label required">Category</label>
                         <select type="text" class="form-select" name="category" placeholder="Select a date" id="select-people" value="">
                           @foreach ($Categories as $category)
-                                <option data-custom-properties="&lt;span class=&quot;avatar avatar-xs&quot; style=&quot;background-image: {{ $category->getFirstMedia() }}&quot;&gt;&lt;/span&gt;" value="{{ $category->id }}"
-                                    {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}
+                                <option data-custom-properties="&lt;span class=&quot;avatar avatar-xs&quot;" value={{ $category->id }}>
+                                    {{ $category->name }}
                                 </option>
                             @endforeach
                         </select>

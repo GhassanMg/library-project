@@ -23,7 +23,7 @@
                 <div class="col-md-3">
                     <div class="card cardhov my-2">
 
-                        <img src="{{ $category->image }}" alt="" width="100%">
+                        {{ $category->GetFirstMedia(); }}
 
                         <div class="card-body">
                             <h5 class="card-title">{{ $category['name'] }}</h5>

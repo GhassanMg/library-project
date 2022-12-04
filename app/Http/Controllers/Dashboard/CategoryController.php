@@ -44,7 +44,6 @@ class CategoryController extends Controller
         $category = Category::create([
             'name' => $request->name,
             'description' => $request->description,
-            'category_id' => $request->category,
         ]);
 
         $category->addMediaFromRequest('image')
@@ -89,12 +88,11 @@ class CategoryController extends Controller
             'description' => $request->description,
         ]);
 
-        // if (isset($request->image)) {
-        //     $new_image = ImageService::storeFiles($request->file('image'), 'categories/Images');
-        //     $category->update([
-        //         'image' => $new_image,
-        //     ]);
-        // }
+        if ($request->hasFile('image')) {
+            $category->media()->delete();
+            $category->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
 
         $categories = Category::paginate(10);
 
