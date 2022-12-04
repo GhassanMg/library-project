@@ -20,7 +20,7 @@
 
         <div class="row">
             @foreach ($books as $book)
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="card cardhov my-2">
 
                         {{ $book->getFirstMedia() }}

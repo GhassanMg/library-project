@@ -20,10 +20,12 @@
 
         <div class="row">
             @foreach ($categories as $category)
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="card cardhov my-2">
 
+                        <div class="card-img-top">
                         {{ $category->GetFirstMedia(); }}
+                        </div>
 
                         <div class="card-body">
                             <h5 class="card-title">{{ $category['name'] }}</h5>
@@ -67,6 +69,11 @@
             transition-delay: 0.1s
         }
 
+        .card-img-top {
+            width: fit-content;
+            height: fit-content;
+            object-fit: cover;
+        }
         h1 {
             color: #161C34;
         }
