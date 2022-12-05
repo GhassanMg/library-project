@@ -11,29 +11,28 @@
                         {{ config('app.name') }}
                     </div>
                     <h2 class="page-title">
-                        {{ __('My Books') }}
+                        {{ __('My Cart') }}
                     </h2>
-                    <h3><a href="{{ route('books.create') }}" class="text-primary ">Add more!</a></h3>
+                    <h3><a href="{{ route('add_book_to_cart') }}" class="text-primary ">Add more!</a></h3>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            @foreach ($books as $book)
+            @foreach ($carts as $cart)
                 <div class="col-md-2">
                     <div class="card cardhov my-2">
-                        {{ $book->getFirstMedia() }}
+
+                        {{ $cart->getFirstMedia() }}
 
                         <div class="card-body">
-                            <h5 class="card-title" >{{ $book['name'] }}</h5>
-                            <button type="button" class="d-block circled btn btn-sm" style="background-color: yellow">Add To Cart</button>
-                            <a href="{{ route('books.show', $book) }}" class="text-primary"> show more
+                            <h5 class="card-title">{{ $cart['name'] }}</h5>
+                            <a href="{{ route('carts.show', $cart) }}" class="text-primary"> show more
                                 info
                             </a>
                             <div class="row my-2">
-
                                 <div class="col">
-                                    <a class="btn ma-2" href="{{ route('books.edit', $book->id) }}"
+                                    <a class="btn ma-2" href="{{ route('carts.edit', $cart->id) }}"
                                         style="background-color: #161C34; color:white;">
                                         Edit
                                     </a>
@@ -41,7 +40,7 @@
                                 <div class="col">
 
                                     <!-- Trigger the modal with a button -->
-                                    <form action="{{ route('books.destroy', $book) }}" method="POST">
+                                    <form action="{{ route('carts.destroy', $cart) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button style="background-color: #F36B2A; color:white;" class="btn mb-2"
@@ -57,7 +56,7 @@
             @endforeach
         </div>
         <div class="row justify-content-center">
-            {{ $books->withQueryString() }}
+            {{ $carts->withQueryString() }}
         </div>
     </div>
 @endsection
@@ -68,18 +67,7 @@
             border-color: #161C34;
             transition-delay: 0.1s
         }
-        .btn-circle.btn-xl {
-			width: 50px;
-			height: 100px;
-			padding: 0px;
-			border-radius: 50%;
-            display: inline-block;
-			font-size: 5px;
-			text-align: center;
-		}
-        .circled{
-            border-radius: 70%;
-        }
+
         h1 {
             color: #161C34;
         }

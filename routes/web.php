@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\BookController;
+use App\Http\Controllers\Dashboard\CartController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
@@ -18,15 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/', function () {
+        return view('home');
+    });
     //Route::group(['middleware' => ['role:admin,user']], function () {
         Route::view('about', 'about')->name('about');
 
@@ -36,6 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('users', UserController::class);
 
+        //Cart Management
+        Route::resource('carts', CartController::class);
+        Route::get('add_book_to_cart', [CartController::class, 'add_book_to_cart'])->name('add_book_to_cart');
     //});
     Route::get('user/books', [BookController::class, 'get_user_books_by_user'])->name('user_books');
 });
