@@ -23,7 +23,7 @@
                 <div class="col-md-2">
                     <div class="card cardhov my-2">
 
-                        {{ $cart->getFirstMedia() }}
+
 
                         <div class="card-body">
                             <h5 class="card-title">{{ $cart['name'] }}</h5>
