@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'first_name' => 'Ghassan',
-            'last_name' => 'Admin',
+            'last_name' => 'Al-Moghrabe',
             'phone' => '0993355478',
             'address' => 'Damas / Baramkeh',
             'password' => 'Admin@2022',

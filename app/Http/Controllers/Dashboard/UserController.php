@@ -17,6 +17,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $user = auth()->user();
         return view('users.show', compact('user'));
     }
 
@@ -30,9 +31,14 @@ class UserController extends Controller
         $user->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
+            'phone' => $request->phone,
         ]);
+
+        if ($request->hasFile('image')) {
+            $user->media()->delete();
+            $user->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
         $users = User::paginate(10);
 
         return view('users.index', compact('users'));

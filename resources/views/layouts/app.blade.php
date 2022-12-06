@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Library Project')</title>
 
     @vite('resources/sass/app.scss')
 
@@ -31,7 +31,7 @@
                         <a href=".">
                             <img src="{{ url('img/books.png') }}" width="110" height="32" alt="Library Project"
                                 class="navbar-brand-image" style="display: inline">
-                                <label for="" style="padding-Left: 10px ">Library Project</label>
+                                <label for="" style="padding-Left: 10px; font-size: 13pt; ">Library Project</label>
                         </a>
                     </h1>
                     <div class="navbar-nav flex-row order-md-last">
@@ -133,14 +133,14 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                                     aria-label="Open user menu">
-                                    <span class="avatar avatar-sm"
-                                        style="background-image: url(https://eu.ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }})"></span>
+                                    <span class="avatar avatar-sm" >{{ auth()->user()->GetFirstMedia() }}</span>
                                     <div class="d-none d-xl-block ps-2">
-                                        {{ auth()->user()->name ?? null }}
+                                        <div>{{ auth()->user()->first_name ?? null }}</div>
+                                        <div class="mt-1 small text-muted">{{ auth()->user()->last_name ?? null }}</div>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <a href="{{ route('profile.show') }}" class="dropdown-item">{{ __('Profile') }}</a>
+                                    <a href="{{ route('profile.show',auth()->user()) }}" class="dropdown-item">{{ __('Profile') }}</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -170,7 +170,7 @@
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item">
-                                    <a href="https://github.com/sponsors/codecalm" target="_blank"
+                                    <a href="https://github.com/GhassanMg/" target="_blank"
                                         class="link-secondary" rel="noopener">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
                                         <svg xmlns="http://www.w3.org/2000/svg"

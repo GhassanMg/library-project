@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title' , 'Books')
+
 @section('content')
     <div class="container-xl">
         <!-- Page title -->

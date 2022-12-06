@@ -21,13 +21,21 @@
                                 <th>{{ __('Phone') }}</th>
                                 <th>{{ __('Address') }}</th>
                                 <th>{{ __('Created at') }}</th>
-                                <th class="w-1"></th>
+                                <th class="w-1">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td class="text-reset"><a href="{{ route('users.show', $user) }}">{{ $user->first_name }}</a></td>
+                                <td >
+                                    <div class="d-flex py-1 align-items-center">
+                                      <span class="avatar me-2">{{ $user->GetFirstMedia() }}</span>
+                                      <div class="flex-fill">
+                                        <div class="font-weight-medium"><a href="{{ route('profile.show',$user) }}" class="text-reset">{{ $user->first_name }}</a></div>
+                                        <div class="text-muted"><a href="{{ route('profile.show',$user) }}" class="text-reset">{{ $user->last_name }}</a></div>
+                                      </div>
+                                    </div>
+                                  </td>
                                 <td class="text-muted">{{ $user->phone }}</td>
                                 <td class="text-muted">{{ $user->address }}</td>
                                 <td class="text-muted">{{ $user->created_at->diffForhumans() }}</td>

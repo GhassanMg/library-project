@@ -18,32 +18,34 @@
             });
         });
     </script> @endpush
-    @section('content') <div class="container-xl">
+    @section('content')
+    <div class="container-xl">
         <!-- Page title -->
         <div class="page-header d-print-none">
             <div class="row align-items-center">
                 <div class="col">
                 <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    {{ config('app.name') }}
-                </div>
-                    <h2 class="page-title">
-                        {{ __('Edit User') }}
-                    </h2>
+                    <div class="page-pretitle">
+                        {{ config('app.name') }}
+                    </div>
+                        <h2 class="page-title">
+                            {{ __('Edit User') }}
+                        </h2>
                 </div>
             </div>
         </div>
+        <div class="justify-content-end">
+            <form action="{{ route('users.destroy', $user) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+            </form>
+        </div>
     </div>
+
 
     <div class="page-body">
         <div class="container-xl">
-            <div style=" padding-left: 5000000">
-                <form action="{{ route('users.destroy', $user) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
-                </form>
-            </div>
             @if ($message = Session::get('success'))
             <div class="alert alert-success alert-dismissible">
                 <div class="d-flex">
@@ -60,53 +62,68 @@
                 <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
             </div> @endif
     <form action="{{ route('users.update', $user) }}" method="POST" class="card" autocomplete="off"
-    enctype="multipart/form-data">
-@csrf
-@method('PUT')
-<div class="card-body">
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="card-body">
 
-    <div class="mb-3">
-        <label class="form-label required">{{ 'First Name' }}</label>
-        <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-            placeholder="{{ 'First Name' }}" value="{{ old('first_name', $user->first_name) }}" required>
-    </div>
-    @error('first_name')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
+        <div class="mb-3">
+            <label class="form-label required">{{ 'First Name' }}</label>
+            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                placeholder="{{ 'First Name' }}" value="{{ old('first_name', $user->first_name) }}" required>
+        </div>
+        @error('first_name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
 
-    <div class="mb-3">
-        <label class="form-label required">{{ 'Last Name' }}</label>
-        <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
-            placeholder="{{ 'Last Name' }}" value="{{ old('last_name', $user->last_name) }}" required>
-    </div>
-    @error('last_name')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
+        <div class="mb-3">
+            <label class="form-label required">{{ 'Last Name' }}</label>
+            <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
+                placeholder="{{ 'Last Name' }}" value="{{ old('last_name', $user->last_name) }}" required>
+        </div>
+        @error('last_name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
 
-    <div class="mb-3">
-        <label class="form-label required">{{ 'Email Address' }}</label>
-        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-            placeholder="{{ 'Email Address' }}" value="{{ old('email', $user->email) }}" required>
-    </div>
-    @error('email')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
+        <div class="mb-3">
+            <label class="form-label required">{{ 'Phone Number' }}</label>
+            <input type="phone" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                placeholder="{{ 'Phone Number' }}" value="{{ old('phone', $user->phone) }}" required>
+        </div>
+        @error('phone')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
 
-    <div class="mb-3">
-        <label class="form-label required">{{ 'Phone Number' }}</label>
-        <input type="phone" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror"
-            placeholder="{{ 'Phone Number' }}" value="{{ old('phone_number', $user->phone_number) }}" required>
-    </div>
-    @error('phone_number')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
+        <div class="mb-3">
+            <label class="form-label required">{{ 'Address' }}</label>
+            <input type="address" name="address" class="form-control @error('address') is-invalid @enderror"
+                placeholder="{{ 'Address' }}" value="{{ old('address', $user->address) }}" required>
+        </div>
+        @error('address')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
 
-</div>
+        <div class="mb-3">
 
-<div class="card-footer">
-    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-</div>
-</form>
+            <div class="mb-3">
+                <label class="form-label required">{{ __('Image') }}</label>
+                <div class="col-md-3 pb-3">
+                    {{ $user->GetFirstMedia() }}
+                </div>
+                <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                    id="image" accept="image/*" value="{{ old('image') }}" multiple>
+                @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        </div>
+    </form>
+
 
 </div>
 </div>

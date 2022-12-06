@@ -12,8 +12,9 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:255|min:3',
             'last_name' => 'required|string|max:255|min:3',
-            'email' => ['required_without:phone_number', Rule::unique('users')->ignore($this->user), 'email', 'max:255', 'min:3', 'regex:/(.+)@(.+)\.(.+)/i'],
-            'phone_number' => ['required_without:email', Rule::unique('users')->ignore($this->user), 'string', 'regex:/(^(\+)*(\d+)$)/u', 'max:255', 'min:6'],
+            'phone' => ['required_without:email', Rule::unique('users')->ignore($this->user), 'string', 'regex:/(^(\+)*(\d+)$)/u', 'max:255', 'min:6'],
+            'address' => 'required|string',
+            'image' => 'image|file'
         ];
     }
 

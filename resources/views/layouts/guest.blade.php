@@ -14,9 +14,18 @@
     <div class="page page-center">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="{{ config('app.url') }}" class="navbar-brand navbar-brand-autodark">
-                    <img src="{{ url('img/logo.svg') }}" height="36" alt="" />
-                </a>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                    <a href=".">
+                        <div style="vertical-align: top;
+                        display: inline-block;
+                        text-align: center;
+                        width: 120px;">
+                            <img src="{{ url('img/books.png') }}"  height="36" alt="Library Project"
+                                class="" style="">
+                                <span style="display: block; padding-top: 10px; font-size: 15pt; ">Library Project</span>
+                        </div>
+                    </a>
+                </h1>
             </div>
 
             @yield('content')
