@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\Cart;
+use App\Models\CartItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -11,14 +14,21 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = Cart::getContent();
-        // dd($cartItems);
         return view('cart', compact('cartItems'));
     }
     public function get_user_cart($cart_id, $currency_id = 1)
     {
         if (isset($cart_id)) {
-            $carts = Cart::with('cartItems')->where('id', $cart_id)->select(['id', 'total', 'cart_items_count'])->first();
-            return view('carts.index', compact('carts'));
+            $cart = Cart::where('id', $cart_id)->select(['id','user_id', 'total', 'cart_items_count'])->first();
+            $cart_items = CartItem::where('cart_id',$cart_id)->get();
+            $books = [];
+            foreach($cart_items as $book){
+                $tempbook = Book::where('id',$book->book_id)->first();
+                $tempbook->setAttribute('quantity', $book->quantity);
+                array_push($books,$tempbook);
+            }
+            $user = User::where('id',$cart->user_id)->first();
+            return view('carts.index', compact('cart','cart_items','books','user'));
         } else {
             return 'cart_is_empty';
         }
@@ -26,18 +36,12 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->image,
-            )
+        Cart::create([
+            'user_id' => $request->user_id,
+            'total' => $request->total,
+            'cart_items_count' => $request->cart_items_count,
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        return redirect()->route('cart.list');
     }
 
     public function updateCart(Request $request)

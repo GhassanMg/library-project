@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('cart_id')->constrained()->onDelete('cascade');
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('quantity')->default(1);
+            $table->double('price');
+
             $table->timestamps();
         });
     }

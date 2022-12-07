@@ -73,6 +73,14 @@
                     @enderror
 
                     <div class="mb-3">
+                        <label class="form-label required">{{ __('Price') }}</label>
+                        <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="{{ 'Price' }}" value="{{ old('price') }}" required>
+                    </div>
+                    @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+
+                    <div class="mb-3">
                         <label class="form-label required">Category</label>
                         <select type="text" class="form-select" name="category" placeholder="Select a date" id="select-people" value="">
                           @foreach ($Categories as $category)

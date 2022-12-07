@@ -18,20 +18,10 @@ class Book extends Model implements HasMedia
      */
     protected $fillable = [
         'name',
+        'price',
         'description',
         'category_id',
     ];
-
-    //Attributes
-    // public function getImageAttribute($key)
-    // {
-    //     if (is_null($key)) {
-    //         return null;
-    //     }
-
-    //     return url('/').'/'.$key;
-    //     //return url('/').$key;
-    // }
 
     //Relations
     public function category()

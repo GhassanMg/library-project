@@ -15,14 +15,20 @@ class CartItem extends Model
      * @var string[]
      */
     protected $fillable = [
-        'product_id',
+        'cart_id',
+        'book_id',
         'quantity',
-        'variation_id',
+        'price',
     ];
 
     // Relationships
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
     }
 }

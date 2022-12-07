@@ -107,7 +107,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    </div>
+                </div>
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>

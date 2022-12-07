@@ -3,61 +3,72 @@
 @section('content')
     <div class="container-xl">
         <!-- Page title -->
-        <div class="page-header d-print-none">
+        <div class="page-header my-3 d-print-none">
             <div class="row align-items-center">
                 <div class="col">
                     <!-- Page pre-title -->
-                    <div class="page-pretitle">
+                    <div class="page-pretitle px-2">
                         {{ config('app.name') }}
                     </div>
-                    <h2 class="page-title">
+                    <h2 class="page-title px-2">
                         {{ __('My Cart') }}
                     </h2>
-                    <h3><a href="{{ route('add_book_to_cart') }}" class="text-primary ">Add more!</a></h3>
                 </div>
+            </div>
+        </div>
+        <div class="card my-3 shadow bg-white rounded">
+            <div class="card-body">
+                <h1 class="card-title d-inline "><span class="text-primary">User :</span> <span class="text-secondary"> {{ $user->first_name }} </span></h1>
+                <h1 class="card-title d-inline px-5 "><span class="text-primary">Total :</span> <span class="text-secondary"> {{ $cart->total }} </span></h1>
+                <h1 class="card-title d-inline px-5 "><span class="text-primary">Items Count :</span> <span class="text-secondary "> {{  $cart->cart_items_count  }} </span></h1>
             </div>
         </div>
 
         <div class="row">
-            @foreach ($carts as $cart)
+            @foreach ($books as $item)
                 <div class="col-md-2">
                     <div class="card cardhov my-2">
 
-
+                        {{ $item->GetFirstMedia() }}
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ $cart['name'] }}</h5>
-                            <a href="{{ route('carts.show', $cart) }}" class="text-primary"> show more
+                            <h5 class="card-title ">{{ $item['name'] }}</h5>
+                            <h6 class="card-title">Quantity : {{ $item['quantity'] }}</h6>
+                            <a href="{{ route('books.show', $item) }}" class="text-primary"> show more
                                 info
                             </a>
                             <div class="row my-2">
-                                <div class="col">
-                                    <a class="btn ma-2" href="{{ route('carts.edit', $cart->id) }}"
-                                        style="background-color: #161C34; color:white;">
-                                        Edit
+                                <div class="col p-right-1">
+                                    <a class="btn ma-2 btn-success"
+                                        style="background-color: color:white;">
+                                        +
                                     </a>
                                 </div>
                                 <div class="col">
 
                                     <!-- Trigger the modal with a button -->
-                                    <form action="{{ route('carts.destroy', $cart) }}" method="POST">
+                                    <form  method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button style="background-color: #F36B2A; color:white;" class="btn mb-2"
+                                        <button style="background-color: color:white;" class="btn mb-2 btn-danger"
                                             type="submit" data-toggle="modal" data-target="#exampleModal">
-                                            Delete
+                                            Remove
                                         </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             @endforeach
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+            </div>
         </div>
-        <div class="row justify-content-center">
-            {{ $carts->withQueryString() }}
-        </div>
+        {{-- <div class="row justify-content-center">
+            {{ $cart_items->withQueryString() }}
+        </div> --}}
     </div>
 @endsection
 @push('css')

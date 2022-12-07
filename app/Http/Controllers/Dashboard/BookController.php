@@ -53,6 +53,7 @@ class BookController extends Controller
     {
         $book = Book::create([
             'name' => $request->name,
+            'price' => $request->price,
             'description' => $request->description,
             'category_id' => $request->category,
         ]);
