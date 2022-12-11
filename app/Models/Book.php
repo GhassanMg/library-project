@@ -23,7 +23,7 @@ class Book extends Model implements HasMedia
         'category_id',
     ];
 
-    //Relations
+    // Relations
     public function category()
     {
         return $this->belongsTo(Category::class);

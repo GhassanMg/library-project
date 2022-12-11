@@ -29,7 +29,6 @@ class BookController extends Controller
         $books = Book::where('user_id', $request->user()->id)->paginate(10);
 
         return view('books.index', compact('books'));
-
     }
 
     /**

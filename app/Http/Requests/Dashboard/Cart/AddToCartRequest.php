@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Api\Product;
+namespace App\Http\Requests\Dashboard\Cart;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateProductRequest extends FormRequest
+class AddToCartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,11 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required|integer|exists:products,id',
             'name' => 'required|string|max:255|min:5',
+            'price' => 'required|integer',
             'description' => 'required|string|max:255|min:5',
-            'image' => 'nullable|image',
+            'category_id' => 'required|integer',
+            'quantity' => 'required|integer',
         ];
     }
 

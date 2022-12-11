@@ -22,7 +22,7 @@ class Category extends Model implements HasMedia
     ];
 
     //Relations
-    public function book()
+    public function books()
     {
         return $this->hasMany(Book::class);
     }

@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
         //Cart Management
         //Route::resource('carts', CartController::class);
         route::get('get_user_cart',[CartController::class,'get_user_cart'])->name('user_cart');
-        Route::get('add_book_to_cart', [CartController::class, 'add_book_to_cart'])->name('add_book_to_cart');
+        Route::post('add_book_to_cart', [CartController::class, 'addToCart'])->name('add_book_to_cart');
     //});
     Route::get('user/books', [BookController::class, 'get_user_books_by_user'])->name('user_books');
 });

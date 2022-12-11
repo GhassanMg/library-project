@@ -23,6 +23,7 @@
                         </a>
                     </li>
 
+                    @if (auth()->user()->hasRole('admin'))
                     <li class="nav-item @if (request()->routeIs('users.index')) active @endif">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -42,7 +43,7 @@
                             </span>
                         </a>
                     </li>
-
+                    @endif
                     <li class="nav-item @if (request()->routeIs('books.index')) active @endif">
                         {{-- @if (auth()->user()->hasRole('admin')) --}}
                         <a class="nav-link" href="{{ route('books.index') }}">

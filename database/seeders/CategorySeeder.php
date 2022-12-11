@@ -20,8 +20,8 @@ class CategorySeeder extends Seeder
             'description' => 'Science Description',
         ]);
         Category::create([
-            'name' => 'Math',
-            'description' => 'Math Description',
+            'name' => 'literature',
+            'description' => 'literature Description',
         ]);
     }
 }

@@ -28,12 +28,20 @@
 
                         <div class="card-body">
                             <h5 class="card-title" >{{ $book['name'] }}</h5>
-                            <button type="button" class="d-block circled btn btn-sm" style="background-color: yellow">Add To Cart</button>
+
+                            @if (auth()->user()->hasRole('user'))
+                            <form action="{{ route('add_book_to_cart', $book) }}" method="POST">
+                                @csrf
+                            {{-- <h3><a href="{{ route('books.create') }}" class="text-primary ">Add more!</a></h3> --}}
+                            <button type="submit" class="d-block circled btn btn-sm" style="background-color: yellow">Add To Cart</button>
+                            </form>
+                            @endif
                             <a href="{{ route('books.show', $book) }}" class="text-primary"> show more
                                 info
                             </a>
                             <div class="row my-2">
 
+                                @if (auth()->user()->hasRole('admin'))
                                 <div class="col">
                                     <a class="btn ma-2" href="{{ route('books.edit', $book->id) }}"
                                         style="background-color: #161C34; color:white;">
@@ -52,6 +60,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

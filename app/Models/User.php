@@ -52,10 +52,4 @@ class User extends Authenticatable implements HasMedia
     {
         $this->attributes['password'] = Hash::make($value);
     }
-
-    //Relations
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
 }

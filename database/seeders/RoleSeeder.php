@@ -21,15 +21,15 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'view user info']);
         Permission::create(['name' => 'delete user']);
 
-        Permission::create(['name' => 'assign product to user']);
-        Permission::create(['name' => 'view user products']);
+        Permission::create(['name' => 'assign book to user']);
+        Permission::create(['name' => 'view user books']);
 
-        Permission::create(['name' => 'edit product']);
-        Permission::create(['name' => 'delete product']);
-        Permission::create(['name' => 'view all products']);
+        Permission::create(['name' => 'edit book']);
+        Permission::create(['name' => 'delete book']);
+        Permission::create(['name' => 'view all books']);
 
         //user permissions
-        Permission::create(['name' => 'show products']);
+        Permission::create(['name' => 'show books']);
 
         //Default Roles
         Role::create(['name' => 'admin'])
@@ -38,16 +38,16 @@ class RoleSeeder extends Seeder
                 'edit user',
                 'view user info',
                 'delete user',
-                'assign product to user',
-                'view user products',
-                'edit product',
-                'delete product',
-                'view all products',
+                'assign book to user',
+                'view user books',
+                'edit book',
+                'delete book',
+                'view all books',
             ]);
 
         Role::create(['name' => 'user'])
             ->givePermissionTo([
-                'show products',
+                'show books',
             ]);
     }
 }

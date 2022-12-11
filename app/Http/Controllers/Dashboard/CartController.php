@@ -34,12 +34,30 @@ class CartController extends Controller
         }
     }
 
-    public function addToCart(Request $request)
+    public function addToCart(Request $book)
     {
-        Cart::create([
-            'user_id' => $request->user_id,
-            'total' => $request->total,
-            'cart_items_count' => $request->cart_items_count,
+        //dd($book);
+        $user = auth()->user();
+        $user_cart = Cart::where('user_id',$user->id)->first();
+        if($user_cart == null){
+            //dd($book);
+            $user_cart = Cart::create([
+                'user_id' => $book->user_id,
+                'total' => $book->price,
+                'cart_items_count' => 1,
+            ]);
+        }
+        else{
+            $user_cart->update([
+                'total' => $user_cart -> total + $book -> price,
+                'cart_items_count' => $user_cart -> cart_items_count + 1,
+            ]);
+        }
+        $item = CartItem::create([
+            'cart_id'  => $user_cart->id,
+            'book_id'  => $book->id,
+            'quantity' => 1,
+            'price'    => $book->price
         ]);
 
     }
